@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Verificador de almuerzo</title>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .message { font-size: 1.3em; font-weight: bold; }
+    </style>
+  </head>
+<body class="form-group" ng-app = "LunchCheck" ng-controller = "LunchCheckController as lunchCheck">
+   <div class="container">
+     <h1>Verificador de almuerzos</h1>
+         <div>
+             <input id="lunch-menu" type="text" placeholder="Ingrese los elementos del almuerzo separados por comas"
+             class="form-control" ng-model="lunchMenu">
+         </div>
+         <div class="form-group">
+             <button class="btn btn-default" ng-click="lunchCheck()">¿Suficiente?</button>
+         </div>
+         <div class="form-group message">
+           <span ng-style="{color: lunchCheck.messageColor}">
+             {{ message }}
+         </div>
+   </div>
+</body>
+</html>
