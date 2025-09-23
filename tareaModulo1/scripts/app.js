@@ -15,7 +15,7 @@
                 .map(item => item.trim()) //elimina los espacios en blanco alrededor de cada elemento
                 .filter(item => item !== ""); //filtra los elementos vacíos
 
-            if (items[0] === "") {  //si el primer elemento del array es una cadena vacía (que es el caso por defecto)
+            if (items[0] === "" ||items.length === 0) { //si el primer elemento del array es una cadena vacía o la longitud del array es 0
                 $scope.message = "Ingresa almuerzo por favor";
             } else if (items.length <= 3) { //si la longitud del array es menor o igual a 3
                 $scope.message = "¡Disfruta!";
