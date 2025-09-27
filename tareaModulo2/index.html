@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <title>Lista de compras semanal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <style>
+    .emptyMessage {
+      font-weight: bold;
+      color: red;
+      font-size: 1.2em;
+    }
+
+    li {
+      margin-bottom: 7px;
+      font-size: 1.2em;
+    }
+
+    li>button {
+      margin-left: 6px;
+    }
+
+    button>span {
+      color: green;
+    }
+  </style>
+</head>
+
+<body ng-app="ShoppingListCheckOff">
+  <div class="container">
+    <h1>Lista de compras semanal</h1>
+
+    <div class="row">
+
+      <!-- To Buy List -->
+      <div class="col-md-6" ng-controller="ToBuyController as ToBuy">
+        <h2>Comprar:</h2>
+        <ul>
+          <li ng-repeat="item in ToBuy.items">Compra {{item.quantity}} {{item.name}}. <button
+              class="btn btn-default" ng-click = "ToBuy.buyItem($index);"><span class="glyphicon glyphicon-ok"></span>
+              Comprado</button></li>
+        </ul>
+        <div ng-if="ToBuy.isEmpty()" class="emptyMessage">¡Lista terminada!</div>
+      </div>
+
+      <!-- Already Bought List -->
+      <div class="col-md-6" ng-controller="AlreadyBoughtController as alreadyBought">
+        <h2>Ya comprado:</h2>
+        <ul>
+          <li ng-repeat="item in alreadyBought.items">{{item.name}} : {{item.quantity}}</li>
+        </ul>
+        <div ng-if="alreadyBought.isEmpty()" class="emptyMessage">Aun no compras nada.</div>
+      </div>
+    </div>
+  </div>
+  <script src="scripts/angular.min.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+
+</html>
