@@ -61,7 +61,7 @@
 
         // Verifica si una lista está vacía
         service.isEmpty = function (items){
-            console.log(items.length === 0);
+            //console.log(items.length === 0);
             return items.length === 0;
         }
     }
