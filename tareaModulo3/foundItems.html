@@ -1,0 +1,16 @@
+<div class="container">
+    <h3 ng-hide="list.found.length == 0" >Menu {{ list.myTitle }}</h3>
+    <table ng-show="list.found.length > 0" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Menu name</th>
+                <th>Menu description</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="item in list.found">
+            <td>{{ item.name }}.</td>
+            <td>{{ item.description }}.</td>
+            <td><button ng-click="list.onRemove({index: $index});">Remove Item</button></td>
+        </tr>
+    </table>
+</div>
