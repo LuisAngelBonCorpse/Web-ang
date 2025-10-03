@@ -8,7 +8,7 @@
 
     function FoundItemsDirective() {
         var ddo = {
-            templateUrl: 'foundItems.html',      
+            templateUrl: 'foundItems.html',
             scope: {
                 found: '<',
                 myTitle: '@title',
@@ -31,24 +31,36 @@
         list.name = "";
         list.description = "";
 
+        list.flag = false;
+
         list.removeItem = function (itemIndex) {
             MenuSearchService.removeItem(itemIndex);
         }
 
         list.getMatchedMenuItems = function () {
-            MenuSearchService.getMatchedMenuItems(list.searchTerm)
-                .then(function (foundItems) {
-                    list.found = foundItems;
-                    list.title = origTitle + list.found.length + " items ";
-                    //console.log(list.found);
-                })
-                .catch(function (error) {
-                    console.log("Something went wrong.", error);
-                });
+            //console.log(list.searchTerm === "");
+            if (list.searchTerm === "") {
+                list.flag = true;
+                //console.log(list.flag);
+            } else {
+                MenuSearchService.getMatchedMenuItems(list.searchTerm)
+                    .then(function (foundItems) {
+                        list.found = foundItems;
+                        list.title = origTitle + list.found.length + " items ";
+                        //console.log(list.found);
+                        if (list.found.length === 0) {
+                            list.flag = true;
+                        }else{
+                            list.flag = false;
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log("Something went wrong.", error);
+                    });
+            }
+
         }
-
     }
-
     MenuSearchService.$inject = ['$http'];
     function MenuSearchService($http) {
         var service = this;
@@ -67,7 +79,7 @@
             foundItems.push(item);
         }
 
-        service.getMatchedMenuItems = function(searchTerm){
+        service.getMatchedMenuItems = function (searchTerm) {
             return $http({
                 method: "GET",
                 url: "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json"
@@ -75,8 +87,8 @@
                 var menu = [response.data.A.menu_items
                     , response.data.B.menu_items
                     , response.data.C.menu_items
-                    , response.data.CM.menu_items    
-                    , response.data.CU.menu_items    
+                    , response.data.CM.menu_items
+                    , response.data.CU.menu_items
                     , response.data.D.menu_items
                     , response.data.DK.menu_items
                     , response.data.DS.menu_items
@@ -92,7 +104,7 @@
                     , response.data.SR.menu_items
                     , response.data.V.menu_items
                     , response.data.VG.menu_items].flat();
-                foundItems = [];              
+                foundItems = [];
                 for (var i = 0; i < menu.length; i++) {
                     var foundItem = {
                         name: menu[i].name,
@@ -106,6 +118,6 @@
             });
         }
     }
-    
-    
-}) ();
+
+
+})();

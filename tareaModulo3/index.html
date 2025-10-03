@@ -19,7 +19,15 @@
     <div class="form-group narrow-button">
       <button class="btn btn-primary" ng-click='list.getMatchedMenuItems()'>Narrow It Down For Me!</button>
     </div>
+    <br>
+    <br>
+    <br>
+    <div ng-show="list.flag" class="alert alert-warning">
+        <h3>No items found</h3>
+    </div>
   </div>
+
+
 
   <found-items
      found="list.found" 
