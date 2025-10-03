@@ -13,4 +13,7 @@
             <td><button ng-click="list.onRemove({index: $index});">Remove Item</button></td>
         </tr>
     </table>
+    <div ng-show="list.found.length == 0">
+        <h3>No items found</h3>
+    </div>
 </div>

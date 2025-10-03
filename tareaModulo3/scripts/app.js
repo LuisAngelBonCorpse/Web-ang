@@ -91,7 +91,8 @@
                     , response.data.SP.menu_items
                     , response.data.SR.menu_items
                     , response.data.V.menu_items
-                    , response.data.VG.menu_items].flat();              
+                    , response.data.VG.menu_items].flat();
+                foundItems = [];              
                 for (var i = 0; i < menu.length; i++) {
                     var foundItem = {
                         name: menu[i].name,
