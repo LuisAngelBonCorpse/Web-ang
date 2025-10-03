@@ -40,7 +40,7 @@
                 .then(function (foundItems) {
                     list.found = foundItems;
                     list.title = origTitle + list.found.length + " items ";
-                    console.log(list.found);
+                    //console.log(list.found);
                 })
                 .catch(function (error) {
                     console.log("Something went wrong.", error);
