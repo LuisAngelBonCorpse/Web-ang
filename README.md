@@ -1,2 +1,2 @@
 # Web ang
-Primera prueba de curso Ang
+Actividades del curso de Angular JS
