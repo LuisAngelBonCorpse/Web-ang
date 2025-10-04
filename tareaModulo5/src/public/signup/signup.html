@@ -1,0 +1,49 @@
+<div class="container">
+    <h2>Sign Up for Newsletter</h2>
+    <form name="signupForm" novalidate>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" ng-model="signUpCtrl.user.firstName"
+                required minlength="1">
+            <div ng-show="signupForm.firstName.$touched && signupForm.firstName.$invalid" class="text-danger">
+                <span ng-show="signupForm.firstName.$error.required">First name is necesary.</span>
+                <span ng-show="signupForm.firstName.$error.minlength">First name must be at least 1 character.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" ng-model="signUpCtrl.user.lastName"
+                required minlength="1">
+            <div ng-show="signupForm.lastName.$touched && signupForm.lastName.$invalid" class="text-danger">
+                <span ng-show="signupForm.lastName.$error.required">Last name is necesary.</span>
+                <span ng-show="signupForm.lastName.$error.minlength">Last name must be at least 1 character.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" ng-model="signUpCtrl.user.email" required>
+            <div ng-show="signupForm.email.$touched && signupForm.email.$invalid" class="text-danger">
+                <span ng-show="signupForm.email.$error.required">Email is necesary.</span>
+                <span ng-show="signupForm.email.$error.email">Please enter a valid email address.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" name="phone" ng-model="signUpCtrl.user.phone" required
+                pattern="^\d{3}-?\d{3}-?\d{4}$" placeholder="123-456-7890">
+            <div ng-show="signupForm.phone.$touched && signupForm.phone.$invalid" class="text-danger">
+                <span ng-show="signupForm.phone.$error.required">Phone number is necesary.</span>
+                <span ng-show="signupForm.phone.$error.pattern">Phone number must be in the format 123-456-7890.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="favoriteMenuItem">Favorite Menu Item (short name)</label>
+            <input type="text" class="form-control" id="favoriteMenuItem" name="favoriteMenuItem"
+                ng-model="signUpCtrl.user.favoriteMenuItem" required>
+            <div ng-show="signUpCtrl.invalidMenuItem" class="text-danger">No such menu number exists.</div>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="signUpCtrl.submit()"
+            ng-disabled="signupForm.$invalid">Submit</button>
+    </form>
+    <div ng-show="signUpCtrl.saved" class="alert alert-success">Your information has been saved.</div>
+</div>
